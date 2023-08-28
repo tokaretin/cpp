@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdio> 
 
-// почему-то не работает std::spointf(speed_str, "%.1f", currentSpeed)
+// почему-то не работает std::sprintf(speed_str, "%.1f", currentSpeed)
 // за-то работает так sprintf_s (speed_str, "%.1f", currentSpeed);  - здесь библиотеку не использую #include <cstdio> 
 int main()
 {
