@@ -1,4 +1,3 @@
-
 #define _CRT_SECURE_NO_WARNINGS // Подавление предупреждений о небезопасных функциях
 #include <iostream>
 //#include <cstdio> 
@@ -38,3 +37,5 @@ int main()
 
     return 0;
 }
+
+
