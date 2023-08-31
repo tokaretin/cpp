@@ -46,27 +46,44 @@ if (notes & DO)
 
 enum note
 {
-    // C - до, D - ре, E - ми, F - фа, G - соль, A - ля, H - си
-    C = 1,
-    D = 2,
-    E = 4,
-    F = 8,
-    G = 16,
-    A = 32,
-    H = 64
+    DO = 1,
+    RE = 2,
+    MI = 4,
+    FA = 8,
+    SOL = 16,
+    LA = 32,
+    SI = 64
 };
 
 int main()
 {
     const int accordMax = 12; // Максимальная длина комбинации
-    const int maxCombination = 7;
+
     int melody[accordMax]; // Массив для хранения комбинаций нот
 
     // Ввод мелодии
     for (int i = 0; i < accordMax; i++)
     {
-        std::cout << "Inter the note combination: " << i + 1 << ": ";
-        std::cin >> melody[i];
+        std::string accord = " ";
+        std::cout << "Enter the note combination: " << i + 1 << ": ";
+        std::cin >> accord;
+
+        melody[i] = 0; // Инициализация флагов нот
+
+        for (int j = 0; j < accord.size(); j++)
+        {
+            int noteValue = accord[j] - '0'; // Преобразование в числовое значание
+            
+            if (noteValue >= 1 && noteValue <= 7)
+            {
+                melody[i] |= 1 << (noteValue - 1); // Установка битовой маски для ноты
+            }
+            else
+            {
+                std::cerr << "Wrong note. Enter a number from 1 to 7." << std::endl;
+            }
+            
+        }
     }
 
     // Воспороизведение мелодии
@@ -74,20 +91,20 @@ int main()
     {
         std::cout << "Accord " << i + 1 << ": ";
 
-        if (melody[i] & C)
-            std::cout << "C ";
-        if (melody[i] & D)
-            std::cout << "D ";
-        if (melody[i] & E)
-            std::cout << "E ";
-        if (melody[i] & F)
-            std::cout << "F ";
-        if (melody[i] & G)
-            std::cout << "G ";
-        if (melody[i] & A)
-            std::cout << "A ";
-        if (melody[i] & H)
-            std::cout << "H ";
+        if (melody[i] & DO)
+            std::cout << "ДО ";
+        if (melody[i] & RE)
+            std::cout << "РЕ ";
+        if (melody[i] & MI)
+            std::cout << "МИ ";
+        if (melody[i] & FA)
+            std::cout << "ФА ";
+        if (melody[i] & SOL)
+            std::cout << "СОЛЬ ";
+        if (melody[i] & LA)
+            std::cout << "ЛЯ ";
+        if (melody[i] & SI)
+            std::cout << "СИ ";
 
         std::cout << std::endl;
     }
