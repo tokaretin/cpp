@@ -175,7 +175,7 @@ int main()
             std::cout << "Conditioner OFF!" << std::endl;
         }
 
-        // освещение с 16:00 и до 20:00 
+        // освещение с 16:00 и до 20:00
         if ((hour >= 16 && hour < 20) && (lights == "on"))
         {
             int target_temerature = 2700;
@@ -186,7 +186,6 @@ int main()
             else if (color_temperature < target_temerature)
             {
                 color_temperature += 200;
-                
             }
             std::cout << "Color temperature: " << color_temperature << "K" << std::endl;
         }
@@ -195,6 +194,7 @@ int main()
             color_temperature = 5000;
             std::cout << "Color temperature: " << color_temperature << "K" << std::endl;
         }
+
     }
 
     return 0;
