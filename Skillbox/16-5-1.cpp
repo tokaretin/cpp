@@ -13,19 +13,8 @@ enum switches
 
 int main()
 {
-    // Используем отдельные переменные для каждого устройства
-    int conditioner_state = 0;
-    int heaters_state = 0;
-    int lights_outside_state = 0;
-    int lights_inside_state = 0;
-
+    int switches_state = 0;       // Начальное состояние выключателей
     int color_temperature = 5000; // Начальная цветовая температура
-
-    // Для отслеживания предыдущего состояния устройств
-    int prev_conditioner_state = conditioner_state;
-    int prev_heaters_state = heaters_state;
-    int prev_lights_outside_state = lights_outside_state;
-    int prev_lights_inside_state = lights_inside_state;
 
     for (int hour = 0; hour < 48; hour++)
     {
@@ -41,40 +30,59 @@ int main()
 
         // Проверяем изменения состояния каждого устройства отдельно
         // Кондиционер до 30°С и меньше 25°С
-        if ((temp_inside >= 30 && prev_conditioner_state == 0) || (temp_inside < 30 && prev_conditioner_state != 0))
+        bool conditioner_changed = false;
+        if ((temp_inside >= 30 && !(switches_state & CONDITIONER)) || (temp_inside < 30 && (switches_state & CONDITIONER)))
         {
-            conditioner_state = (conditioner_state == 0) ? CONDITIONER : 0;
-            std::cout << (conditioner_state == CONDITIONER ? "Conditioner ON!" : "Conditioner OFF!") << std::endl;
+            switches_state ^= CONDITIONER;
+            conditioner_changed = true;
         }
 
         // Отопление
-        if ((temp_inside < 22 && prev_heaters_state == 0) || (temp_inside >= 22 && prev_heaters_state != 0))
+        bool heaters_changed = false;
+        if ((temp_inside < 22 && !(switches_state & HEATERS)) || (temp_inside >= 22 && (switches_state & HEATERS)))
         {
-            heaters_state = (heaters_state == 0) ? HEATERS : 0;
-            std::cout << (heaters_state == HEATERS ? "Heaters ON!" : "Heaters OFF!") << std::endl;
+            switches_state ^= HEATERS;
+            heaters_changed = true;
         }
 
         // Движение снаружи
-        if (((hour >= 16 || hour < 5) && movement == "yes" && prev_lights_outside_state == 0) ||
-            (!((hour >= 16 || hour < 5) && movement == "yes") && prev_lights_outside_state != 0))
+        bool lights_outside_changed = false;
+        if (((hour >= 16 || hour < 5) && movement == "yes" && !(switches_state & LIGHTS_OUTSIDE)) ||
+            (!((hour >= 16 || hour < 5) && movement == "yes") && (switches_state & LIGHTS_OUTSIDE)))
         {
-            lights_outside_state = (lights_outside_state == 0) ? LIGHTS_OUTSIDE : 0;
-            std::cout << (lights_outside_state == LIGHTS_OUTSIDE ? "Outside Lights ON!" : "Outside Lights OFF!") << std::endl;
+            switches_state ^= LIGHTS_OUTSIDE;
+            lights_outside_changed = true;
         }
 
         // Освещение внутри
-        if (((hour >= 16 && hour < 20) && lights == "on" && prev_lights_inside_state == 0) ||
-            (!((hour >= 16 && hour < 20) && lights == "on") && prev_lights_inside_state != 0))
+        bool lights_inside_changed = false;
+        if (((hour >= 16 && hour < 20) && lights == "on" && !(switches_state & LIGHTS_INSIDE)) ||
+            (!((hour >= 16 && hour < 20) && lights == "on") && (switches_state & LIGHTS_INSIDE)))
         {
-            lights_inside_state = (lights_inside_state == 0) ? LIGHTS_INSIDE : 0;
-            std::cout << (lights_inside_state == LIGHTS_INSIDE ? "Inside Lights ON!" : "Inside Lights OFF!") << std::endl;
+            switches_state ^= LIGHTS_INSIDE;
+            lights_inside_changed = true;
         }
 
-        // Обновление предыдущего состояния
-        prev_conditioner_state = conditioner_state;
-        prev_heaters_state = heaters_state;
-        prev_lights_outside_state = lights_outside_state;
-        prev_lights_inside_state = lights_inside_state;
+        // Выводим сообщения только если состояния изменились
+        if (conditioner_changed)
+        {
+            std::cout << (switches_state & CONDITIONER ? "Conditioner ON!" : "Conditioner OFF!") << std::endl;
+        }
+
+        if (heaters_changed)
+        {
+            std::cout << (switches_state & HEATERS ? "Heaters ON!" : "Heaters OFF!") << std::endl;
+        }
+
+        if (lights_outside_changed)
+        {
+            std::cout << (switches_state & LIGHTS_OUTSIDE ? "Outside Lights ON!" : "Outside Lights OFF!") << std::endl;
+        }
+
+        if (lights_inside_changed)
+        {
+            std::cout << (switches_state & LIGHTS_INSIDE ? "Inside Lights ON!" : "Inside Lights OFF!") << std::endl;
+        }
     }
 
     return 0;
