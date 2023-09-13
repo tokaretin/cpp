@@ -1,17 +1,19 @@
 #include <iostream>
 
+#define E std::cout << std::endl
+
 int main()
 {
+    E;
     // первый пример
     int i = 11;
-    std::cout << &i;
+    std::cout << "Адрес где лежит переменная i: " << &i;
 
-    std::cout << std::endl;
-
+    E;
     // второй пример
     i = 15;
-    int *pi = &i;
-    std::cout << *pi << std::endl; // разименовать pi и загрузить число 15
+    int* pi = &i;
+    std::cout << "Разименовываем *pi и загружаем число (int* pi = &i;) 15: " << *pi << std::endl; // разименовать pi и загрузить число 15
 
     i = 100;
     std::cout << *pi << std::endl; // разименовать pi и загрузить число 100
