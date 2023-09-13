@@ -30,18 +30,18 @@ void swap (int* a, int* b)
     int temp = *a;
     *a = *b;
     *b = temp;
-    std::cout << "После обмена" << std::endl; 
-    std::cout << "1-e число: " <<  *a << std::endl << 
-                 "2-e число: " <<  *b << std::endl;
+    std::cout << "After an exchange" << std::endl; 
+    std::cout << "1 number: " <<  *a << std::endl << 
+                 "2 number: " <<  *b << std::endl;
 }
 
 int main() 
 {
     int a, b;
-    std::cout << "Введите два числа, а я их поменяю местами:" << std::endl;
-    std::cout << "Введите 1-e число: ";
+    std::cout << "Enter two numbers and I will swap them:" << std::endl;
+    std::cout << "Enter 1 number: ";
     std::cin >> a;
-    std::cout << "Введите 2-e число: ";
+    std::cout << "Enter 2 number: ";
     std::cin >> b;
     swap(&a, &b);
 
