@@ -23,17 +23,21 @@ void reverseArr (int* arr, int size)
 {
     for (int i = 0; i < size / 2; i++)
     {
-        int temp = arr[i];
+        int temp = arr[i];      
         arr[i] = arr[size - 1 - i];
         arr[size - 1 - i] = temp;
     }
 
+    // пример: Массив: 4 3 9 8 1 0
+    //         Шаг 1 — 0 3 9 8 1 4
+    //         Шаг 2 — 0 1 9 8 3 4
+    //         Шаг 3 — 0 1 8 9 3 4
+
+    // Выводим элементы массива после изменения порядка
     for (int i = 0; i < size; i++)
     {
-        std::cout << arr[i] << " ";
-    }
-    
-    
+        std::cout << "swap array[" << i  << "] " << arr[i] << std::endl;
+    } 
 }
 
 int main() 
@@ -43,7 +47,7 @@ int main()
 
     for (int i = 0; i < SIZE; i++)
     {
-        std::cout << "Input the number for array[" << i << "]: "; 
+        std::cout << "Enter the number for array[" << i << "]: "; 
         std::cin >> ar[i];
     }
     
