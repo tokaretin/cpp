@@ -54,4 +54,6 @@ int main()
     reverseArr(ar, 5);
 
     return 0;
+
+    
 }

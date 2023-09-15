@@ -1,1 +1,1 @@
- // if (*(a + 1))
+boolalpha
