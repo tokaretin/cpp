@@ -25,7 +25,7 @@ int degree1(int num, int degree)
     return res;
 }
 
-// не нужно указывать степень
+// не нужно указывать степень в аргументе уже указана степень int degree = 2
 int degree2(int num, int degree = 2)
 {
     int res = 1;
