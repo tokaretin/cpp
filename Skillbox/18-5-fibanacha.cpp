@@ -21,6 +21,13 @@ int main()
     {
         std::cout << i + 1 << " - " << fib2(i) << std::endl;
     }
+    
+
+    std::cout << std::endl;
+   
+    std::cout << "Число фибаначи 5 = " << fib2(5) << std::endl;
+    std::cout << "Число фибаначи 20 = " << fib2(20) << std::endl;
+    std::cout << "Число фибаначи 9 = " << fib2(9) << std::endl;
     return 0;
 }
 
