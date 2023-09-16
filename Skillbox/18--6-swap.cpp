@@ -11,7 +11,7 @@ void swap (int &a, int &b)
 }
 
 // Алгоритм Евклида. Наибольший общий делитель.
-int gcd (int a, int b)
+int greatest_common_divisor (int a, int b)
 {
     if(b>a) 
     {
@@ -24,7 +24,7 @@ int gcd (int a, int b)
     }
     else
     {
-    return gcd(b, a%b); // Иначе вызываем рекурсивно функцию gcd с аргументами b и a % b.
+    return greatest_common_divisor(b, a%b); // Иначе вызываем рекурсивно функцию greatest_common_divisor с аргументами b и a % b.
     }
 
 }
@@ -39,6 +39,6 @@ int main()
     NEWSTR;
 
     // наибольший общий делитель двух чисел
-    std::cout << "наибольший общий делитель двух чисел " << gcd(30, 90) << std::endl; // 30
-    std::cout << "наибольший общий делитель двух чисел " << gcd(1024, 512) << std::endl; // 6
+    std::cout << "наибольший общий делитель двух чисел " << greatest_common_divisor(30, 90) << std::endl; // 30
+    std::cout << "наибольший общий делитель двух чисел " << greatest_common_divisor(1024, 512) << std::endl; // 6
 }   
