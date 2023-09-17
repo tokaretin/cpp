@@ -23,9 +23,8 @@ int main()
      
     lin(arr, SIZE, k, b);
 
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
     {
         std::cout << arr[i] << " | ";
-    }
-    
+    } 
 }
