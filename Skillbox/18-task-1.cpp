@@ -38,8 +38,6 @@ for(int i = 0; i < 4; ++i)
 #include <iostream>
 #include <vector>
 
-#define NS std::cout << std::endl;
-
 // Функция swapvec для обмена значениями между вектором a и массивом b
 void swapvec(std::vector<int> &a, int *b, int size)
 {
@@ -63,7 +61,7 @@ int main()
       std::cout << a[i] << " ";
    }
 
-   NS;
+   std::cout << std::endl;
 
    std::cout << "массив b = ";
    for (int i = 0; i < sizeof(b) / sizeof(b[0]); i++)
@@ -71,8 +69,8 @@ int main()
       std::cout << b[i] << " ";
    }
 
-   NS;
-   NS;
+   std::cout << std::endl;
+   std::cout << std::endl;
 
    std::cout << "Функция swapvec для обмена значениями между вектором a и массивом b" << std::endl;
    swapvec(a, b, sizeof(b) / sizeof(b[0]));
@@ -83,7 +81,7 @@ int main()
       std::cout << a[i] << " ";
    }
 
-   NS;
+   std::cout << std::endl;
 
    std::cout << "массив b = ";
    for (int i = 0; i < sizeof(b) / sizeof(b[0]); i++)
