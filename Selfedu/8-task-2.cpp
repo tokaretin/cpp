@@ -13,8 +13,10 @@ int main()
     int arr[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
     int arrq[]{64, 64};
 
-    std::cout << "Sum of all values in the array: " << sumValue(arr, sizeof(arr) / sizeof(arr[0])) << std::endl;
-    std::cout << "Sum of all values in the array: " << sumValue(arrq, sizeof(arrq) / sizeof(arrq[0]));
+    std::cout << "Sum of all values in the array: "
+              << sumValue(arr, sizeof(arr) / sizeof(arr[0])) << std::endl;
+    std::cout << "Sum of all values in the array: "
+              << sumValue(arrq, sizeof(arrq) / sizeof(arrq[0]));
 
     return 0;
 }
