@@ -1,2 +1,3 @@
-  buffer[19] = 0;
-    std::cout << buffer << std::endl;
+  // note << num << str;
+    // note << num;
+    // std::cout << num << " " << str << std::endl;

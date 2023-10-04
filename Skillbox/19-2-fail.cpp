@@ -4,7 +4,7 @@
 int main()
 {
     std::ifstream bank;
-    bank.open("C:\\cpp\\tutorial\\bank.txt");
+    bank.open("C:\\cpp\\tutorial\\bank.txt", std::ios::binary);
     double money;
     std::string currency;
     bank >> money >> currency;
